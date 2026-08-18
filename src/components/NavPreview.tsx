@@ -164,21 +164,21 @@ export function VoicePreview({ playKey }: { playKey: string }) {
   const bars = 34;
 
   return (
-    <div className="relative flex h-full flex-col overflow-hidden bg-foreground p-4 text-background">
-      <div className="flex items-center gap-2 border-b border-background/15 pb-3 text-xs text-background/65">
-        <span className="flex size-7 items-center justify-center rounded-full bg-background text-foreground">
+    <div className="relative flex h-full flex-col overflow-hidden bg-background p-4 text-foreground">
+      <div className="flex items-center gap-2 border-b border-border pb-3 text-xs text-muted-foreground">
+        <span className="flex size-7 items-center justify-center rounded-full bg-muted text-foreground">
           <Mic className="size-3.5" />
         </span>
-        <span className="font-medium text-background">Voice employee</span>
+        <span className="font-medium text-foreground">Voice employee</span>
         <span className="ml-auto inline-flex items-center gap-1.5">
           <span className="live-dot" /> 00:0{Math.min(frame, 9)}
         </span>
       </div>
 
-      <div className="mt-3 flex items-center gap-2.5 rounded-xl bg-background/10 px-3.5 py-2.5">
-        <Phone className="size-3.5 text-background/60" />
+      <div className="mt-3 flex items-center gap-2.5 rounded-xl bg-muted px-3.5 py-2.5">
+        <Phone className="size-3.5 text-muted-foreground" />
         <span className="text-[12.5px]">+1 415 555 0134</span>
-        <span className="ml-auto text-[11px] text-background/55">
+        <span className="ml-auto text-[11px] text-muted-foreground">
           answered 0.4s
         </span>
       </div>
@@ -199,7 +199,7 @@ export function VoicePreview({ playKey }: { playKey: string }) {
             key={l}
             className={cn(
               "fade-up text-[12.5px] leading-snug",
-              l.startsWith("Caller") ? "text-background/55" : "text-background",
+              l.startsWith("Caller") ? "text-muted-foreground" : "text-foreground",
             )}
             style={{ animationDelay: `${i * 20}ms` }}
           >
@@ -213,7 +213,7 @@ export function VoicePreview({ playKey }: { playKey: string }) {
           {["Intent: emergency", "Score 96", "Routed"].map((t) => (
             <span
               key={t}
-              className="rounded-full border border-background/20 px-2.5 py-1 text-[11px] text-background/65"
+              className="rounded-full border border-border px-2.5 py-1 text-[11px] text-muted-foreground"
             >
               {t}
             </span>
