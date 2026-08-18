@@ -1,6 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, MessageSquare, Mic, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  Menu,
+  MessageSquare,
+  Mic,
+  X,
+} from "lucide-react";
 import { BotOrb } from "./BotOrb";
 import { ChatPreview, VoicePreview } from "./NavPreview";
 import { cn } from "@/lib/utils";
@@ -113,23 +120,22 @@ export function SiteNav() {
 
             <div
               className={cn(
-                "absolute top-full left-1/2 w-[42rem] -translate-x-1/2 pt-4",
-                "origin-top transition-all duration-300 ease-[cubic-bezier(.22,1,.36,1)]",
+                "absolute top-full left-0 w-[40rem] pt-3",
+                "origin-top-left transition-all duration-300 ease-[cubic-bezier(.22,1,.36,1)]",
                 menu
                   ? "pointer-events-auto translate-y-0 scale-100 opacity-100 blur-0"
-                  : "pointer-events-none -translate-y-1.5 scale-[0.98] opacity-0 blur-[2px]",
+                  : "pointer-events-none -translate-y-2 scale-[0.97] opacity-0 blur-[2px]",
               )}
               aria-hidden={!menu}
             >
-              <div className="nav-panel grid grid-cols-[0.85fr_1.15fr] gap-6 p-3">
+              <div className="nav-panel grid grid-cols-[0.8fr_1.2fr] gap-2 p-2">
                 <div
-                  className="relative flex flex-col"
+                  className="relative flex flex-col py-1"
                   onMouseLeave={() => setHover(-1)}
                 >
-                  {/* sliding hover highlight */}
                   <span
                     className={cn(
-                      "pointer-events-none absolute inset-x-0 h-[calc(50%-0.25rem)] rounded-xl bg-muted/70",
+                      "pointer-events-none absolute inset-x-1 h-[calc(50%-0.25rem)] rounded-lg bg-muted",
                       "transition-all duration-300 ease-[cubic-bezier(.22,1,.36,1)]",
                       hover < 0 ? "opacity-0" : "opacity-100",
                     )}
@@ -143,33 +149,32 @@ export function SiteNav() {
                       to={p.to}
                       onClick={() => setMenu(false)}
                       onMouseEnter={() => setHover(i)}
-                      className="group relative block flex-1 rounded-xl px-4 py-3.5"
+                      className="group relative flex flex-1 gap-3 rounded-lg px-3 py-3.5"
                     >
-                      <span
-                        className={cn(
-                          "font-display block text-[17px] font-medium tracking-tight transition-all duration-300",
-                          i === hover
-                            ? "translate-x-0.5 text-foreground"
-                            : "text-foreground/70",
-                        )}
-                      >
-                        {p.label}
+                      <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-border bg-background">
+                        <p.icon className="size-3.5" />
                       </span>
-                      <span
-                        className={cn(
-                          "mt-1 block text-[13px] leading-snug transition-all duration-300",
-                          i === hover
-                            ? "translate-x-0.5 text-muted-foreground"
-                            : "text-muted-foreground/70",
-                        )}
-                      >
-                        {p.body}
+                      <span className="min-w-0 flex-1">
+                        <span className="flex items-center font-display text-[15px] font-medium text-foreground">
+                          {p.label}
+                          <ArrowUpRight
+                            className={cn(
+                              "ml-auto size-3.5 transition-all duration-300",
+                              i === hover
+                                ? "translate-x-0 opacity-100"
+                                : "-translate-x-1 opacity-0",
+                            )}
+                          />
+                        </span>
+                        <span className="mt-1 block text-[12px] leading-snug text-muted-foreground">
+                          {p.body}
+                        </span>
                       </span>
                     </Link>
                   ))}
                 </div>
 
-                <div className="relative h-[17rem]">
+                <div className="relative h-[17rem] overflow-hidden rounded-xl bg-foreground">
                   {[0, 1].map((i) => (
                     <div
                       key={i}
