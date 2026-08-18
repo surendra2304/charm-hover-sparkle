@@ -120,7 +120,7 @@ export function SiteNav() {
 
             <div
               className={cn(
-                "absolute top-full left-0 w-[42rem] pt-3",
+                "absolute top-full left-[-1.5rem] w-[42rem] pt-4",
                 "origin-top-left transition-all duration-300 ease-[cubic-bezier(.22,1,.36,1)]",
                 menu
                   ? "pointer-events-auto translate-y-0 scale-100 opacity-100 blur-0"
