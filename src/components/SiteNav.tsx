@@ -108,43 +108,86 @@ export function SiteNav() {
             </button>
 
 
-            {menu && (
-              <div className="absolute top-full left-1/2 w-[42rem] -translate-x-1/2 pt-4">
-                <div className="nav-panel fade-up grid grid-cols-[0.85fr_1.15fr] gap-6 p-6">
-                  <div className="flex flex-col gap-6">
-                    {products.map((p, i) => (
-                      <Link
-                        key={p.to}
-                        to={p.to}
-                        onClick={() => setMenu(false)}
-                        onMouseEnter={() => setHover(i)}
-                        className="group block"
-                      >
-                        <span
-                          className={cn(
-                            "font-display block text-[17px] font-medium tracking-tight transition-colors",
-                            i === hover ? "text-foreground" : "text-foreground/70",
-                          )}
-                        >
-                          {p.label}
-                        </span>
-                        <span className="mt-1 block text-[13px] leading-snug text-muted-foreground">
-                          {p.body}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-
-                  <div className="h-[17rem]">
-                    {hover === 1 ? (
-                      <VoicePreview playKey={`v-${menu}`} />
-                    ) : (
-                      <ChatPreview playKey={`c-${menu}`} />
+            <div
+              className={cn(
+                "absolute top-full left-1/2 w-[42rem] -translate-x-1/2 pt-4",
+                "origin-top transition-all duration-300 ease-[cubic-bezier(.22,1,.36,1)]",
+                menu
+                  ? "pointer-events-auto translate-y-0 scale-100 opacity-100 blur-0"
+                  : "pointer-events-none -translate-y-1.5 scale-[0.98] opacity-0 blur-[2px]",
+              )}
+              aria-hidden={!menu}
+            >
+              <div className="nav-panel grid grid-cols-[0.85fr_1.15fr] gap-6 p-3">
+                <div
+                  className="relative flex flex-col"
+                  onMouseLeave={() => setHover(-1)}
+                >
+                  {/* sliding hover highlight */}
+                  <span
+                    className={cn(
+                      "pointer-events-none absolute inset-x-0 h-[calc(50%-0.25rem)] rounded-xl bg-muted/70",
+                      "transition-all duration-300 ease-[cubic-bezier(.22,1,.36,1)]",
+                      hover < 0 ? "opacity-0" : "opacity-100",
                     )}
-                  </div>
+                    style={{
+                      transform: `translateY(calc(${Math.max(hover, 0)} * (100% + 0.5rem)))`,
+                    }}
+                  />
+                  {products.map((p, i) => (
+                    <Link
+                      key={p.to}
+                      to={p.to}
+                      onClick={() => setMenu(false)}
+                      onMouseEnter={() => setHover(i)}
+                      className="group relative block flex-1 rounded-xl px-4 py-3.5"
+                    >
+                      <span
+                        className={cn(
+                          "font-display block text-[17px] font-medium tracking-tight transition-all duration-300",
+                          i === hover
+                            ? "translate-x-0.5 text-foreground"
+                            : "text-foreground/70",
+                        )}
+                      >
+                        {p.label}
+                      </span>
+                      <span
+                        className={cn(
+                          "mt-1 block text-[13px] leading-snug transition-all duration-300",
+                          i === hover
+                            ? "translate-x-0.5 text-muted-foreground"
+                            : "text-muted-foreground/70",
+                        )}
+                      >
+                        {p.body}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="relative h-[17rem]">
+                  {[0, 1].map((i) => (
+                    <div
+                      key={i}
+                      className={cn(
+                        "absolute inset-0 transition-all duration-350 ease-[cubic-bezier(.22,1,.36,1)]",
+                        (hover === 1 ? 1 : 0) === i
+                          ? "translate-y-0 scale-100 opacity-100"
+                          : "pointer-events-none translate-y-1.5 scale-[0.985] opacity-0",
+                      )}
+                    >
+                      {i === 1 ? (
+                        <VoicePreview playKey={`v-${menu}`} />
+                      ) : (
+                        <ChatPreview playKey={`c-${menu}`} />
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
-            )}
+            </div>
+
 
           </div>
 
