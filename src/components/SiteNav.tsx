@@ -120,7 +120,7 @@ export function SiteNav() {
 
             <div
               className={cn(
-                "absolute top-full left-0 w-[40rem] pt-3",
+                "absolute top-full left-0 w-[42rem] pt-3",
                 "origin-top-left transition-all duration-300 ease-[cubic-bezier(.22,1,.36,1)]",
                 menu
                   ? "pointer-events-auto translate-y-0 scale-100 opacity-100 blur-0"
@@ -128,7 +128,7 @@ export function SiteNav() {
               )}
               aria-hidden={!menu}
             >
-              <div className="nav-panel grid grid-cols-[0.8fr_1.2fr] gap-2 p-2">
+              <div className="nav-panel grid grid-cols-[13rem_1fr] gap-3 p-3">
                 <div
                   className="relative flex flex-col py-1"
                   onMouseLeave={() => setHover(-1)}
@@ -149,13 +149,13 @@ export function SiteNav() {
                       to={p.to}
                       onClick={() => setMenu(false)}
                       onMouseEnter={() => setHover(i)}
-                      className="group relative flex flex-1 gap-3 rounded-lg px-3 py-3.5"
+                      className="group relative flex flex-1 gap-3 rounded-lg px-3 py-2.5"
                     >
-                      <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-border bg-background">
+                      <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full border border-border bg-background">
                         <p.icon className="size-3.5" />
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="flex items-center font-display text-[15px] font-medium text-foreground">
+                        <span className="flex items-center font-display text-sm font-medium text-foreground">
                           {p.label}
                           <ArrowUpRight
                             className={cn(
@@ -166,7 +166,7 @@ export function SiteNav() {
                             )}
                           />
                         </span>
-                        <span className="mt-1 block text-[12px] leading-snug text-muted-foreground">
+                        <span className="mt-1 block text-xs leading-snug text-muted-foreground">
                           {p.body}
                         </span>
                       </span>
@@ -174,7 +174,7 @@ export function SiteNav() {
                   ))}
                 </div>
 
-                <div className="relative h-[17rem] overflow-hidden rounded-xl bg-foreground">
+                <div className="relative h-[17rem] overflow-hidden rounded-xl bg-background border border-border">
                   {[0, 1].map((i) => (
                     <div
                       key={i}
