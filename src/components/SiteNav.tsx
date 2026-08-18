@@ -42,7 +42,7 @@ const links = [
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [hover, setHover] = useState(0);
+  const [hover, setHover] = useState(-1);
   
 
   const [scrolled, setScrolled] = useState(false);
@@ -90,7 +90,10 @@ export function SiteNav() {
           <div
             className="relative"
             onMouseEnter={() => setMenu(true)}
-            onMouseLeave={() => setMenu(false)}
+            onMouseLeave={() => {
+              setMenu(false);
+              setHover(-1);
+            }}
           >
             <button
               type="button"
