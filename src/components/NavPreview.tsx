@@ -84,12 +84,12 @@ export function ChatPreview({ playKey }: { playKey: string }) {
   const current = chatScript[state.index];
 
   return (
-    <div className="relative flex h-full flex-col overflow-hidden bg-foreground p-4 text-background">
-      <div className="flex items-center gap-2 border-b border-background/15 pb-3 text-xs text-background/65">
-        <span className="flex size-7 items-center justify-center rounded-full bg-background text-foreground">
+    <div className="relative flex h-full flex-col overflow-hidden bg-background p-4 text-foreground">
+      <div className="flex items-center gap-2 border-b border-border pb-3 text-xs text-muted-foreground">
+        <span className="flex size-7 items-center justify-center rounded-full bg-muted text-foreground">
           <MessageSquare className="size-3.5" />
         </span>
-        <span className="font-medium text-background">Chat employee</span>
+        <span className="font-medium text-foreground">Chat employee</span>
         <span className="ml-auto inline-flex items-center gap-1.5">
           <span className="live-dot" /> live
         </span>
@@ -105,8 +105,8 @@ export function ChatPreview({ playKey }: { playKey: string }) {
             className={cn(
               "max-w-[88%] rounded-xl px-3.5 py-2 text-[12px] leading-snug",
               m.from === "user"
-                ? "ml-auto bg-background text-foreground"
-                : "bg-background/10 text-background/80",
+                ? "ml-auto bg-foreground text-background"
+                : "bg-muted text-foreground/80",
             )}
           >
             {m.text}
@@ -119,8 +119,8 @@ export function ChatPreview({ playKey }: { playKey: string }) {
             className={cn(
               "chat-bubble-in max-w-[88%] rounded-xl px-3.5 py-2 text-[12px] leading-snug",
               current.from === "user"
-                ? "ml-auto bg-background text-foreground"
-                : "bg-background/10 text-background/80",
+                ? "ml-auto bg-foreground text-background"
+                : "bg-muted text-foreground/80",
               state.typing && "w-fit max-w-none py-2.5",
             )}
           >
@@ -129,7 +129,7 @@ export function ChatPreview({ playKey }: { playKey: string }) {
                 {[0, 1, 2].map((d) => (
                   <span
                     key={d}
-                    className="size-1.5 rounded-full bg-background/55"
+                    className="size-1.5 rounded-full bg-foreground/55"
                     style={{
                       animation: "bounce-dot 1000ms ease-in-out infinite",
                       animationDelay: `${d * 150}ms`,
@@ -143,7 +143,7 @@ export function ChatPreview({ playKey }: { playKey: string }) {
           </div>
         )}
       </div>
-      <div className="mt-3 flex items-center gap-2 border-t border-background/15 pt-3 text-[11px] text-background/55">
+      <div className="mt-3 flex items-center gap-2 border-t border-border pt-3 text-[11px] text-muted-foreground">
         <Check className="size-3" /> Qualifying lead automatically
       </div>
     </div>
